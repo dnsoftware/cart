@@ -1,7 +1,7 @@
 # Laravel 5 & 6 & 7 Shopping Cart
-[![Build Status](https://travis-ci.org/darryldecode/laravelshoppingcart.svg?branch=master)](https://travis-ci.org/darryldecode/laravelshoppingcart)
-[![Total Downloads](https://poser.pugx.org/darryldecode/cart/d/total.svg)](https://packagist.org/packages/darryldecode/cart)
-[![License](https://poser.pugx.org/darryldecode/cart/license.svg)](https://packagist.org/packages/darryldecode/cart)
+[![Build Status](https://travis-ci.org/dnsoftware/cart.svg?branch=master)](https://travis-ci.org/dnsoftware/cart)
+[![Total Downloads](https://poser.pugx.org/dnsoftware/cart/d/total.svg)](https://packagist.org/packages/dnsoftware/cart)
+[![License](https://poser.pugx.org/dnsoftware/cart/license.svg)](https://packagist.org/packages/dnsoftware/cart)
 
 A Shopping Cart Implementation for Laravel Framework
 
@@ -9,38 +9,38 @@ A Shopping Cart Implementation for Laravel Framework
 
 Demo: https://shoppingcart-demo.darrylfernandez.com/cart
 
-Git repo of the demo: https://github.com/darryldecode/laravelshoppingcart-demo
+Git repo of the demo: https://github.com/dnsoftware/laravelshoppingcart-demo
 
 ## INSTALLATION
 
 Install the package through [Composer](http://getcomposer.org/).
 
 For Laravel 5.1~:
-`composer require "darryldecode/cart:~2.0"`
+`composer require "dnsoftware/cart:~2.0"`
 
 For Laravel 5.5, 5.6, or 5.7~:
 
-```composer require "darryldecode/cart:~4.0"``` or 
-```composer require "darryldecode/cart"```
+```composer require "dnsoftware/cart:~4.0"``` or 
+```composer require "dnsoftware/cart"```
 
 ## CONFIGURATION
 
 1. Open config/app.php and add this line to your Service Providers Array.
 
 ```php
-Darryldecode\Cart\CartServiceProvider::class
+Dnsoftware\Cart\CartServiceProvider::class
 ```
 
 2. Open config/app.php and add this line to your Aliases
 
 ```php
-  'Cart' => Darryldecode\Cart\Facades\CartFacade::class
+  'Cart' => Dnsoftware\Cart\Facades\CartFacade::class
 ```
 
 3. Optional configuration file (useful if you plan to have full control)
 
 ```php
-php artisan vendor:publish --provider="Darryldecode\Cart\CartServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Dnsoftware\Cart\CartServiceProvider" --tag="config"
 ```
 
 ## HOW TO USE
@@ -434,7 +434,7 @@ by adding 'order' parameter in CartCondition.
 ```php
 
 // add single condition on a cart bases
-$condition = new \Darryldecode\Cart\CartCondition(array(
+$condition = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'VAT 12.5%',
     'type' => 'tax',
     'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
@@ -449,14 +449,14 @@ Cart::condition($condition);
 Cart::session($userId)->condition($condition); // for a speicifc user's cart
 
 // or add multiple conditions from different condition instances
-$condition1 = new \Darryldecode\Cart\CartCondition(array(
+$condition1 = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'VAT 12.5%',
     'type' => 'tax',
     'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
     'value' => '12.5%',
     'order' => 2
 ));
-$condition2 = new \Darryldecode\Cart\CartCondition(array(
+$condition2 = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'Express Shipping $15',
     'type' => 'shipping',
     'target' => 'subtotal', // this condition will be applied to cart's subtotal when getSubTotal() is called.
@@ -470,7 +470,7 @@ Cart::condition($condition2);
 // will also be affected as getTotal() depends in getSubTotal() which is the subtotal.
 
 // add condition to only apply on totals, not in subtotal
-$condition = new \Darryldecode\Cart\CartCondition(array(
+$condition = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'Express Shipping $15',
     'type' => 'shipping',
     'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
@@ -536,7 +536,7 @@ Now let's add condition on an item.
 ```php
 
 // lets create first our condition instance
-$saleCondition = new \Darryldecode\Cart\CartCondition(array(
+$saleCondition = new \Dnsoftware\Cart\CartCondition(array(
             'name' => 'SALE 5%',
             'type' => 'tax',
             'value' => '-5%',
@@ -556,7 +556,7 @@ $product = array(
 Cart::add($product);
 
 // you may also add multiple condition on an item
-$itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
+$itemCondition1 = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'SALE 5%',
     'type' => 'sale',
     'value' => '-5%',
@@ -566,7 +566,7 @@ $itemCondition2 = new CartCondition(array(
     'type' => 'promo',
     'value' => '-25',
 ));
-$itemCondition3 = new \Darryldecode\Cart\CartCondition(array(
+$itemCondition3 = new \Dnsoftware\Cart\CartCondition(array(
     'name' => 'MISC',
     'type' => 'misc',
     'value' => '+10',
@@ -830,7 +830,7 @@ $this->app['wishlist'] = $this->app->share(function($app)
 		});
 
 // for 5.4 or newer
-use Darryldecode\Cart\Cart;
+use Dnsoftware\Cart\Cart;
 use Illuminate\Support\ServiceProvider;
 
 class WishListProvider extends ServiceProvider
@@ -1127,7 +1127,7 @@ namespace App\Cart;
 
 use Carbon\Carbon;
 use Cookie;
-use Darryldecode\Cart\CartCollection;
+use Dnsoftware\Cart\CartCollection;
 
 class CacheStorage
 {
@@ -1170,7 +1170,7 @@ class CacheStorage
 
 To make this the cart's default storage, let's update the cart's configuration file.
 First, let us publish first the cart config file for us to enable to override it.
-`php artisan vendor:publish --provider="Darryldecode\Cart\CartServiceProvider" --tag="config"`
+`php artisan vendor:publish --provider="Dnsoftware\Cart\CartServiceProvider" --tag="config"`
 
 after running that command, there should be a new file on your config folder name `shopping_cart.php`
 
@@ -1183,7 +1183,7 @@ to your cart instance by injecting it to the service provider of your wishlist c
 to use your custom storage. See below:
 
 ```php
-use Darryldecode\Cart\Cart;
+use Dnsoftware\Cart\Cart;
 use Illuminate\Support\ServiceProvider;
 
 class WishListProvider extends ServiceProvider
