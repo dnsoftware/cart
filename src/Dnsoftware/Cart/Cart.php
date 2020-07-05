@@ -1,4 +1,5 @@
-<?php namespace Dnsoftware\Cart;
+<?php
+namespace Dnsoftware\Cart;
 
 use Dnsoftware\Cart\Exceptions\InvalidConditionException;
 use Dnsoftware\Cart\Exceptions\InvalidItemException;
@@ -12,6 +13,8 @@ use Dnsoftware\Cart\Exceptions\UnknownModelException;
  */
 class Cart
 {
+
+    public $cart_currency;
 
     /**
      * the item storage

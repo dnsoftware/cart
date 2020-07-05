@@ -22,6 +22,9 @@ class CartServiceProvider extends ServiceProvider {
 				__DIR__.'/config/config.php' => config_path('shopping_cart.php'),
 			], 'config');
 		}
+
+        $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+
 	}
 
 	/**
