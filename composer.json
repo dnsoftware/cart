@@ -17,7 +17,7 @@
     "require": {
         "php": ">=7.1",
         "illuminate/support": "*",
-        "illuminate/validation": "*",
+        
         "illuminate/translation": "*"
     },
     "require-dev": {
